@@ -1,0 +1,239 @@
+# 1. SETUP & LIBRARIES
+graphics.off()
+rm(list = ls())
+#================================================================#
+# 2. DATA LOADING & PREPROCESSING
+#================================================================#
+# Load the dataset [cite: 170]
+# Note: Adjust the filename if it differs in your folder
+Data_Raw <- read_csv("Finals-Dataset.xlsx - Sheet1.csv")
+#================================================================#
+# 2. DATA LOADING & PREPROCESSING
+#================================================================#
+# Load the dataset [cite: 170]
+# Note: Adjust the filename if it differs in your folder
+Data_Raw <- read_csv("Finals-Dataset.xlsx")
+#================================================================#
+#--- STOCK PRICE PREDICTION: GLM vs GAM COMPARISON           ---#
+#================================================================#
+# Project: Predicting Stock Price Movements in Finance
+# 1. SETUP & LIBRARIES
+graphics.off()
+rm(list = ls())
+cat("\f")
+# Load necessary libraries (Install if missing: install.packages("pacman"))
+library(readr)      # For reading CSV
+library(dplyr)      # For data manipulation
+library(lubridate)  # For date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For visualization
+library(gratia)     # For visualizing GAM smooths (optional but recommended)
+# Set Working Directory (Adjust this to your folder path)
+# setwd("/path/to/your/project/folder")
+#================================================================#
+# 2. DATA LOADING & PREPROCESSING
+#================================================================#
+# Load the dataset [cite: 170]
+# Note: Adjust the filename if it differs in your folder
+Data_Raw <- read_csv("Finals-Dataset.xlsx")
+# ==============================================================================
+# PROJECT: Predicting Stock Price Movements (GLM vs GAM)
+# FILE: Finals_Stock_Analysis.R
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries (install if missing using install.packages("..."))
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+# Note: We use read_csv for better date parsing capabilities
+file_name <- "Finals-Dataset.xlsx"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+# --- 3. DATA SPLITTING (Objective h) ------------------------------------------
+# We split into Train (80%) and Test (20%) to evaluate "Holdout" accuracy
+set.seed(2025) # Reproducibility
+train_size <- floor(0.80 * nrow(Data))
+# --- 3. DATA SPLITTING (Objective h) ------------------------------------------
+# We split into Train (80%) and Test (20%) to evaluate "Holdout" accuracy
+set.seed(2025) # Reproducibility
+train_size <- floor(0.80 * nrow(Data))
+# --- 3. DATA SPLITTING (Objective h) ------------------------------------------
+# We split into Train (80%) and Test (20%) to evaluate "Holdout" accuracy
+set.seed(2025) # Reproducibility
+train_size <- floor(0.80 * nrow(Data))
+source("C:/Users/HP/Desktop/COS/Stock_Prediction_Analysis.R")
+graphics.off()
+# ==============================================================================
+# PROJECT: Predicting Stock Price Movements (GLM vs GAM)
+# FILE: Finals_Stock_Analysis.R
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries (install if missing using install.packages("..."))
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+file_name <- "Finals-Dataset.csv"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+# ==============================================================================
+# PROJECT: Predicting Stock Price Movements (GLM vs GAM)
+# FILE: Finals_Stock_Analysis.R
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries (install if missing using install.packages("..."))
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+file_name <- "Finals-Dataset.csv"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+# ==============================================================================
+# PROJECT: Predicting Stock Price Movements (GLM vs GAM)
+# FILE: Finals_Stock_Analysis.R
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries (install if missing using install.packages("..."))
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+file_name <- "Finals-Dataset.csv"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+# ==============================================================================
+# PROJECT: Predicting Stock Price Movements (GLM vs GAM)
+# FILE: Finals_Stock_Analysis.R
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries (install if missing using install.packages("..."))
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+file_name <- "Finals-Dataset.csv"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+# ==============================================================================
+# PROJECT: Predicting Stock Price Movements (GLM vs GAM)
+# FILE: Finals_Stock_Analysis.R
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries (install if missing using install.packages("..."))
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+file_name <- "Finals-Dataset.csv"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+# ==============================================================================
+# --- 1. SETUP & LIBRARIES -----------------------------------------------------
+# Clear environment to ensure a fresh start
+rm(list = ls())
+graphics.off()
+cat("\014") # Clear console
+# Load necessary libraries
+library(readr)      # For robust CSV reading
+library(dplyr)      # For data manipulation (lagging, filtering)
+library(lubridate)  # For easy date handling
+library(mgcv)       # For Generalized Additive Models (GAM)
+library(ggplot2)    # For professional plotting
+library(gratia)     # For visualizing GAM smooths (highly recommended)
+# --- 2. DATA LOADING & PREPROCESSING ------------------------------------------
+# Load the dataset
+file_name <- "StockData.csv"
+if(file.exists(file_name)) {
+Data_Raw <- read_csv(file_name, show_col_types = FALSE)
+} else {
+stop("Error: File not found. Please ensure the CSV is in your working directory.")
+}
+install.packages(c("readr", "dplyr", "lubridate", "mgcv", "ggplot2", "gratia"))
+source("C:/Users/HP/Desktop/COS/Stock_Prediction_Analysis.R")
+install.packages(c("readr", "dplyr", "lubridate", "mgcv", "ggplot2", "gratia"))
+cls
+cat
+install.packages(c("readr", "dplyr", "lubridate", "mgcv", "ggplot2", "gratia"))
+setwd("C:/Users/HP/Desktop/COS/Finals_Project")
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
+source("C:/Users/HP/Desktop/COS/Finals_Project/Stock_Prediction_Analysis.R", echo = TRUE)
