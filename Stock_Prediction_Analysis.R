@@ -20,11 +20,13 @@ Data <- read.csv("StockData.csv", stringsAsFactors = FALSE)
 
 # Clean numeric columns
 clean_numeric <- function(x) {
-  as.numeric(gsub(",", "", x))
+  as.numeric(gsub("[.,]", "", x))
 }
 
 numeric_cols <- c("Open", "High", "Low", "Close", "Adj.Close", "Volume")
 Data[numeric_cols] <- lapply(Data[numeric_cols], clean_numeric)
+
+print(head(Data))
 
 # Parse dates and sort
 Data$Date <- as.Date(Data$Date, format = "%d-%b-%y")
