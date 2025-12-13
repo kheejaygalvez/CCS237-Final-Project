@@ -139,12 +139,45 @@ calculate_metrics <- function(predictions, actual) {
 glm_metrics <- calculate_metrics(glm_predictions, Data_Test$Close)
 gam_metrics <- calculate_metrics(gam_predictions, Data_Test$Close)
 
-# Print comparison
-cat("\nModel Performance Comparison:\n")
-cat(sprintf("GLM - RMSE: %.2f, R²: %.4f, AIC: %.1f\n", 
-            glm_metrics$rmse, glm_metrics$r2, AIC(glm_model)))
-cat(sprintf("GAM - RMSE: %.2f, R²: %.4f, AIC: %.1f\n", 
-            gam_metrics$rmse, gam_metrics$r2, AIC(gam_model)))
+performance_table <- data.frame(
+  Metric = c("RMSE", "R²", "AIC", "BIC"),
+  GLM = c(
+    glm_metrics$rmse,
+    glm_metrics$r2,
+    AIC(glm_model),
+    BIC(glm_model)
+  ),
+  GAM = c(
+    gam_metrics$rmse,
+    gam_metrics$r2,
+    AIC(gam_model),
+    BIC(gam_model)
+  ),
+  Difference = c(
+    gam_metrics$rmse - glm_metrics$rmse,
+    gam_metrics$r2 - glm_metrics$r2,
+    AIC(gam_model) - AIC(glm_model),
+    BIC(gam_model) - BIC(glm_model)
+  )
+)
+
+# Format the table
+performance_table$GLM <- round(performance_table$GLM, 2)
+performance_table$GAM <- round(performance_table$GAM, 2)
+performance_table$Difference <- round(performance_table$Difference, 2)
+
+# For R², use 4 decimal places
+performance_table$GLM[performance_table$Metric == "R²"] <- 
+  round(glm_metrics$r2, 4)
+performance_table$GAM[performance_table$Metric == "R²"] <- 
+  round(gam_metrics$r2, 4)
+performance_table$Difference[performance_table$Metric == "R²"] <- 
+  round(gam_metrics$r2 - glm_metrics$r2, 4)
+
+# Save as CSV
+write.csv(performance_table, 
+          "paper_plots/Table1_PerformanceComparison.csv", 
+          row.names = FALSE)
 
 # Statistical comparison
 cat("\nStatistical Test (F-test):\n")
@@ -333,6 +366,7 @@ p1 <- ggplot(Data_clean, aes(x = Date, y = Close)) +
        x = "Year", y = "Closing Price (USD)") +
   theme_minimal()
 
+print(p1)
 ggsave("paper_plots/Fig1_TimeSeries_CrisisPeriods.png", p1, width = 10, height = 6, dpi = 300)
 
 #### PLOT 2: MONTHLY SEASONAL PATTERNS ####
@@ -345,6 +379,7 @@ p2 <- ggplot(monthly_stats, aes(x = Month, y = Mean_Return)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+print(p2)
 ggsave("paper_plots/Fig2_MonthlySeasonalPatterns.png", p2, width = 10, height = 6, dpi = 300)
 
 #### PLOT 3: MODEL COMPARISON ####
@@ -371,6 +406,8 @@ p3_gam <- ggplot(comparison_data, aes(x = Actual, y = GAM)) +
 library(gridExtra)
 p3 <- grid.arrange(p3_glm, p3_gam, ncol = 2,
                    top = "Figure 3: Model Performance Comparison")
+
+print(p3)
 ggsave("paper_plots/Fig3_ModelComparison.png", p3, width = 12, height = 6, dpi = 300)
 
 #### PLOT 4: CRISIS PERFORMANCE ####
@@ -389,19 +426,25 @@ p4 <- ggplot(p4_data, aes(x = Period, y = RMSE, fill = Model)) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+print(p4)
 ggsave("paper_plots/Fig4_CrisisPerformance.png", p4, width = 10, height = 6, dpi = 300)
 
 #### PLOT 5: GAM SMOOTH TERMS ####
 cat("\nGenerating Plot 5: GAM Smooth Terms...\n")
 
-png("paper_plots/Fig5_GAM_SmoothTerms.png", width = 10, height = 6, units = "in", res = 300)
 par(mfrow = c(1, 2))
 plot(gam_model, select = 1, se = TRUE, seWithMean = TRUE,
      main = "Smooth: Lag_Return_1", ylab = "Effect")
 plot(gam_model, select = 2, se = TRUE, seWithMean = TRUE,
      main = "Smooth: Volatility_12", ylab = "Effect")
-mtext("Figure 5: GAM Smooth Term Estimates", side = 3, line = -2, outer = TRUE, 
-      cex = 1.2, font = 2)
+mtext("Figure 5: GAM Smooth Term Estimates",
+      side = 3, line = -2, outer = TRUE, cex = 1.2, font = 2)
+
+dev.copy(
+  png,
+  filename = "paper_plots/Fig5_GAM_SmoothTerms.png",
+  width = 10, height = 6, units = "in", res = 300
+)
 dev.off()
 
 #### PLOT 6: VARIABLE IMPORTANCE ####
@@ -417,6 +460,7 @@ p6 <- ggplot(top_vars, aes(x = reorder(Variable, Estimate), y = Estimate)) +
        x = "Variable", y = "Coefficient Estimate") +
   theme_minimal()
 
+print(p6)
 ggsave("paper_plots/Fig6_VariableImportance.png", p6, width = 10, height = 6, dpi = 300)
 
 #### FINAL SUMMARY ####
